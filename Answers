@@ -1,0 +1,163 @@
+1. ES5 Function that takes a variable number of arguments
+function filterOutOdds() {
+  var nums = Array.prototype.slice.call(arguments);
+  return nums.filter(function(num) {
+    return num % 2 === 0
+  });
+}
+
+ES2015 Function that takes a variable number of arguments
+/* 
+   Write an ES2015 Version
+   This function uses the rest operator (...) to gather all arguments passed into the function into an array called 'args'.
+   It then uses the Array.filter() method along with an arrow function to filter out odd numbers from the 'args' array.
+   The arrow function checks if each value 'v' in the 'args' array is divisible by 2 with no remainder (% 2 === 0),
+   and returns true if it is, indicating it's an even number.
+   The filter() method returns a new array containing only the even numbers.
+*/
+const filterOutOdds = (...args) => args.filter(v => v % 2 === 0);
+
+findMin
+
+2.Write a function called findMin that accepts a variable number of arguments and returns the smallest argument.
+
+Make sure to do this using the rest and spread operator.
+findMin(1,4,12,-3) // -3
+findMin(1,-1) // -1
+findMin(3,1) // 1
+
+// Define a function called findMin using arrow function syntax and the rest parameter (...args)
+const findMin = (...args) => {
+    // Use the spread operator (...) along with Math.min to find the minimum value among the arguments
+    return Math.min(...args);
+}
+
+mergeObjects
+
+3.Write a function called mergeObjects that accepts two objects and returns a new object which contains all the keys and values of the first object and second object.
+mergeObjects({a:1, b:2}, {c:3, d:4}) // {a:1, b:2, c:3, d:4}
+
+const mergeObjects = (obj1, obj2) => ({...obj1, ...obj2})
+
+doubleAndReturnArgs
+
+4.Write a function called doubleAndReturnArgs which accepts an array and a variable number of arguments. 
+The function should return a new array with the original array values and all of additional arguments doubled.
+doubleAndReturnArgs([1,2,3],4,4) // [1,2,3,8,8]
+doubleAndReturnArgs([2],10,4) // [2, 20, 8]
+
+// Define a function called doubleAndReturnArgs
+const doubleAndReturnArgs = (arr, ...args) =>
+    // Return a new array consisting of:
+    // - The original array (arr)
+    // - Each additional argument doubled
+    [...arr, ...args.map(v => v * 2)];
+
+Slice and Dice!
+5.For this section, write the following functions using rest, spread and refactor these functions to be arrow functions!
+
+Make sure that you are always returning a new array or object and not modifying the existing inputs.
+/** remove a random element in the items array
+and return a new array without that item. */
+
+function removeRandom(items) {
+
+}
+
+/** Return a new array with every item in array1 and array2. */
+
+function extend(array1, array2) {
+
+}
+
+/** Return a new object with all the keys and values
+from obj and a new key/value pair */
+
+function addKeyVal(obj, key, val) {
+
+}
+
+
+/** Return a new object with a key removed. */
+
+function removeKey(obj, key) {
+
+}
+
+
+/** Combine two objects and return a new object. */
+
+function combine(obj1, obj2) {
+
+}
+
+
+/** Return a new object with a modified key and value. */
+
+function update(obj, key, val) {
+
+}
+
+
+/** 
+ * Remove a random element in the items array and return a new array without that item.
+ */
+const removeRandom = items => {
+  // Generate a random index to remove
+  const idx = Math.floor(Math.random() * items.length);
+  // Return a new array with the item at idx removed
+  return [...items.slice(0, idx), ...items.slice(idx + 1)];
+}
+
+/** 
+ * Return a new array with every item in array1 and array2.
+ */
+const extend = (array1, array2) => {
+  // Return a new array combining elements from array1 and array2
+  return [...array1, ...array2];
+}
+
+/** 
+ * Return a new object with all the keys and values from obj and a new key/value pair.
+ */
+const addKeyVal = (obj, key, val) => {
+  // Create a shallow copy of obj
+  let newObj = { ...obj }
+  // Add the new key/value pair
+  newObj[key] = val;
+  // Return the modified object
+  return newObj;
+}
+
+/** 
+ * Return a new object with a key removed.
+ */
+const removeKey = (obj, key) => {
+  // Create a shallow copy of obj
+  let newObj = { ...obj }
+  // Delete the key from the copied object
+  delete newObj[key]
+  // Return the modified object
+  return newObj;
+}
+
+/** 
+ * Combine two objects and return a new object.
+ */
+const combine = (obj1, obj2) => {
+  // Return a new object combining properties from obj1 and obj2
+  return { ...obj1, ...obj2 };
+}
+
+/** 
+ * Return a new object with a modified key and value.
+ */
+const update = (obj, key, val) => {
+  // Create a shallow copy of obj
+  let newObj = { ...obj }
+  // Update the value of the specified key
+  newObj[key] = val;
+  // Return the modified object
+  return newObj;
+}
+
